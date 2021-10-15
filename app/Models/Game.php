@@ -13,7 +13,6 @@ class Game extends Model
         'player_name',
         'player_steps',
         'levels',
-        'path',
     ];
 
     public static function boot()
@@ -23,6 +22,8 @@ class Game extends Model
         self::creating(function (Game $game) {
             $game->generateUuid();
             $game->generatePath();
+            $game->score = 0;
+            $game->player_steps = '';
         });
     }
 
@@ -70,6 +71,8 @@ class Game extends Model
             $this->status = false;
         }elseif(strlen($this->player_steps) === (int)$this->levels){
             $this->status = true;
+        }else{
+            $this->score++;
         }
 
         $this->save();

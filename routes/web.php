@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', '\App\Http\Controllers\InterfaceController@index');
+Route::get('/settings', '\App\Http\Controllers\InterfaceController@getSettings');
+Route::post('/settings', '\App\Http\Controllers\InterfaceController@storeSettings');
+Route::get('/game/{game_uuid}', '\App\Http\Controllers\InterfaceController@game');
 
-Route::post('/game', '\App\Http\Controllers\GameController@createGame');
-Route::get('/game/{game_uuid}', '\App\Http\Controllers\GameController@getGame');
-Route::put('/game/{game_uuid}/step/{step}', '\App\Http\Controllers\GameController@makeStep');
+
+Route::group(['prefix' => '/ws'], function(){
+    Route::post('/game', '\App\Http\Controllers\GameApiController@createGame');
+    Route::get('/games', '\App\Http\Controllers\GameApiController@getGames');
+    Route::get('/game/{game_uuid}', '\App\Http\Controllers\GameApiController@getGame');
+    Route::put('/game/{game_uuid}/step/{step}', '\App\Http\Controllers\GameApiController@makeStep');
+});

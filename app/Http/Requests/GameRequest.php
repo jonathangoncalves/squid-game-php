@@ -24,8 +24,7 @@ class GameRequest extends FormRequest
     public function rules()
     {
         return [
-            'player_name' => 'required|max:50',
-            'levels' => 'integer|required:min:5'
+            'player_name' => 'required|max:50'
         ];
     }
 }

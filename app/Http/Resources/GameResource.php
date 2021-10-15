@@ -23,6 +23,7 @@ class GameResource extends JsonResource
             'uuid' => $this->uuid,
             'levels' => $this->levels,
             'status' => $this->status,
+            'score' => $this->score,
         ];
     }
 }
