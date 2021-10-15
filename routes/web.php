@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/game', '\App\Http\Controllers\GameController@createGame');
+Route::put('/game/step', '\App\Http\Controllers\GameController@makeStep');
