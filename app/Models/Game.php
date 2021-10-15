@@ -26,29 +26,52 @@ class Game extends Model
         });
     }
 
-    public function __construct(string $player_name, int $levels)
-    {
-        parent::__construct();
-        $this->player_name = $player_name;
-        $this->levels = $levels;
-    }
 
-    public function generateUuid(){
+    public function generateUuid()
+    {
         $this->uuid = Str::uuid();
 
     }
 
-    private function generatePath() {
+    private function generatePath()
+    {
         $input = 'ABC';
         $strength = $this->levels;
 
         $input_length = strlen($input);
         $random_string = '';
-        for($i = 0; $i < $strength; $i++) {
+        for ($i = 0; $i < $strength; $i++) {
             $random_character = $input[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
 
         $this->path = $random_string;
+    }
+
+    /**
+     * @param string $step
+     */
+    public function makeStep(string $step){
+        if(
+            strlen($step) !== 1 ||
+            strpos('ABC', $step) === false
+        ){
+            throw new \InvalidArgumentException("Invalid Step option");
+        }
+        if(!is_null($this->status)){
+            if($this->status){
+                throw new \InvalidArgumentException("Player already won the game");
+            }
+            throw new \InvalidArgumentException("Player already lose the game");
+        }
+        $current_steps = $this->player_steps;
+        $this->player_steps .= $step;
+        if($step !== substr($this->path, strlen($current_steps), 1)){
+            $this->status = false;
+        }elseif(strlen($this->player_steps) === (int)$this->levels){
+            $this->status = true;
+        }
+
+        $this->save();
     }
 }

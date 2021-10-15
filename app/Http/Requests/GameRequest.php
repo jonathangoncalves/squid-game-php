@@ -25,7 +25,7 @@ class GameRequest extends FormRequest
     {
         return [
             'player_name' => 'required|max:50',
-            'level' => 'integer|required:min:5'
+            'levels' => 'integer|required:min:5'
         ];
     }
 }

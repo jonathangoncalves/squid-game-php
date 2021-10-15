@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 
 Route::post('/game', '\App\Http\Controllers\GameController@createGame');
-Route::put('/game/step', '\App\Http\Controllers\GameController@makeStep');
+Route::get('/game/{game_uuid}', '\App\Http\Controllers\GameController@getGame');
+Route::put('/game/{game_uuid}/step/{step}', '\App\Http\Controllers\GameController@makeStep');
