@@ -71,6 +71,7 @@ class Game extends Model
             $this->status = false;
         }elseif(strlen($this->player_steps) === (int)$this->levels){
             $this->status = true;
+            $this->score++;
         }else{
             $this->score++;
         }

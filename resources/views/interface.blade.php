@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="assets/css/application.css" rel="stylesheet">
-
+    <script>
+        var base_url = '<?php echo url('/') ?>';
+    </script>
     <!-- Styles -->
 
     <style>
@@ -27,7 +29,22 @@
     <h2 class="text-center">Ande nas plataformas sem cair, senão você perde!</h2>
     <div class="row">
         <div class="col-md-6">
-            <button type="button" class="btn btn-primary btn-lg start-game-button">Iniciar Jogo</button>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="form-group row">
+                                <label for="player_name" class="col-sm-3 col-form-label">Nome</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control-plaintext" id="player_name"
+                                           placeholder="Digite seu Nome">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-lg start-game-button">Iniciar Jogo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="card">
@@ -44,12 +61,12 @@
                         </tr>
                         </thead>
                         <tbody id="scoreboard">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Carregando...</td>
-                                <td>...</td>
-                                <td>...</td>
-                            </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Carregando...</td>
+                            <td>...</td>
+                            <td>...</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

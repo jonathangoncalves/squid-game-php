@@ -41,7 +41,7 @@ class GameApiController extends Controller
     public function getGames()
     {
         try {
-            $games = Game::whereNotNull('status')->orderBy('status', 'desc')->orderBy('score', 'desc')->get();
+            $games = Game::whereNotNull('status')->orderBy('status', 'desc')->orderBy('score', 'desc')->limit(5)->get();
         } catch (\Exception $e) {
             return response()->json(["error" => true, "message" => $e->getMessage()], 400);
         }
